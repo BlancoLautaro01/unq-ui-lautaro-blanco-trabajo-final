@@ -5,16 +5,17 @@ import dado3 from './images/dado3.jpeg';
 import dado4 from './images/dado4.jpeg';
 import dado5 from './images/dado5.jpeg';
 import dado6 from './images/dado6.jpeg';
+import 'bootstrap/dist/css/bootstrap.css';
 import './Dado.css';
 
 export function Dado() {
 
-    const number = Math.floor(Math.random() * 6) + 1;
+    const [number, setNumber] = useState(Math.floor(Math.random() * 6) + 1);
     const [img, setImg] = useState();
-    const [fixed, setFix] = useState(false);
+    const [isFixed, setFix] = useState(false);
 
     useEffect(() => {
-            console.log(number);
+
             setImgSwitch();
         },[]
     );
@@ -49,17 +50,22 @@ export function Dado() {
         setFix(true);
     }
 
+    const refresh = () => {
+        if(!isFixed) {
+            setNumber(Math.floor(Math.random() * 6) + 1);
+            setImgSwitch();
+        }
+    }
+
     return(
-        <div className="container">
-            <div className="box">
-                <div className="row">
-                    <img className="image" src={img} fluid="true" alt="logo"/>
-                </div>
-                <div className="row">
-                    <button type="button" className={fixed ? "unfixed" : "fixed"} onClick={handleClick}>
-                        {fixed ? "Desfijar" : "Fijar"}
-                    </button>
-                </div>
+        <div className="box">
+            <div className="row">
+                <img className={isFixed ? "dadoFijo" : "dado"} src={img} fluid="true" alt="logo"/>
+            </div>
+            <div className="row-md">
+                <button type="button" className={isFixed ? "fixed" : "fix"} onClick={handleClick}>
+                    {isFixed ? "Fijado" : "Fijar"}
+                </button>
             </div>
         </div>
     )

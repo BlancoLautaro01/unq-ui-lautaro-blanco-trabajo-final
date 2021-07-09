@@ -1,20 +1,11 @@
 body {
     background: #000000;
+    padding: 20px
 }
 
-.image {
-    padding: 10px;
-    text-align: center;
-}
+.top-buffer { margin-top: 50px }
 
-.box {
-    width: 200px;
-    padding: 5px;
-    background: #000000;
-    text-align: center;
-}
-
-.fix {
+.reload {
     background: none;
     text-align: center;
     border: 3px solid #3aff8c;
@@ -24,15 +15,15 @@ body {
     cursor: pointer
 }
 
-.fix:hover {
-    background: rgb(9, 109, 0)
-}
-
-.fixed {
+.dontReload {
     background: none;
     text-align: center;
-    border: 3px solid #575757;
+    border: 3px solid #818181;
     padding: 5px 10px;
     color: white;
     border-radius: 15px
+}
+
+.reload:hover {
+    background: rgb(9, 109, 0)
 }
