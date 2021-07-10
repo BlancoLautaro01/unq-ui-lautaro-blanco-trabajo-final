@@ -1,27 +1,33 @@
 body {
-    background: #000000;
-    padding: 20px;
+  background: #000000;
+  padding: 20px;
 }
 
-.top-buffer { margin-top: 50px; }
-
-.reload {
-    background: none;
-    text-align: center;
-    border: 3px solid #3aff8c;
-    padding: 5px 10px;
-    color: white;
-    border-radius: 15px;
-    cursor: pointer;
+.top-buffer {
+  margin-top: 50px;
 }
 
-.dontReload {
-    background: none;
-    text-align: center;
-    border: 3px solid #818181;
-    padding: 5px 10px;
-    color: white;
-    border-radius: 15px;
+.clickable {
+  background: none;
+  text-align: center;
+  border: 3px solid #3aff8c;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
 }
 
-.reload:hover { background: rgb(9, 109, 0); }
+.clickable:hover {
+  background: rgb(9, 109, 0);
+}
+
+.notClickable {
+  background: none;
+  text-align: center;
+  border: 3px solid #818181;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 15px;
+}
+
+
