@@ -1,9 +1,9 @@
 body {
     background: #000000;
-    padding: 20px
+    padding: 20px;
 }
 
-.top-buffer { margin-top: 50px }
+.top-buffer { margin-top: 50px; }
 
 .reload {
     background: none;
@@ -12,7 +12,7 @@ body {
     padding: 5px 10px;
     color: white;
     border-radius: 15px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .dontReload {
@@ -21,9 +21,7 @@ body {
     border: 3px solid #818181;
     padding: 5px 10px;
     color: white;
-    border-radius: 15px
+    border-radius: 15px;
 }
 
-.reload:hover {
-    background: rgb(9, 109, 0)
-}
+.reload:hover { background: rgb(9, 109, 0); }

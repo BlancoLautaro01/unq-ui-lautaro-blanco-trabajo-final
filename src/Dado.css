@@ -1,6 +1,4 @@
-body {
-    background: #000000;
-}
+body { background: #000000; }
 
 .image {
     padding: 10px;
@@ -21,12 +19,10 @@ body {
     padding: 5px 10px;
     color: white;
     border-radius: 15px;
-    cursor: pointer
+    cursor: pointer;
 }
 
-.fix:hover {
-    background: rgb(9, 109, 0)
-}
+.fix:hover { background: rgb(9, 109, 0); }
 
 .fixed {
     background: none;
@@ -34,5 +30,5 @@ body {
     border: 3px solid #575757;
     padding: 5px 10px;
     color: white;
-    border-radius: 15px
+    border-radius: 15px;
 }
