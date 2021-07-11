@@ -7,6 +7,18 @@ body {
   margin-top: 50px;
 }
 
+.image {
+  padding: 10px;
+  text-align: center;
+}
+
+.box {
+  width: 200px;
+  padding: 5px;
+  background: #000000;
+  text-align: center;
+}
+
 .clickable {
   background: none;
   text-align: center;
@@ -29,5 +41,3 @@ body {
   color: white;
   border-radius: 15px;
 }
-
-
