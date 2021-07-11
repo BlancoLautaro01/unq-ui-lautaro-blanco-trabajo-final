@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Dado } from "./Dado";
-import { TopButton } from "./TopButton";
+import { TopButton, SpinsLeft } from "./SecondaryComponents";
 import { images, randomNumbers, initializeDados } from "./Randomize";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
 export function Generala() {
-  const [turnsLeft, setTurnsLeft] = useState(2);
+  const [turnsLeft, setTurnsLeft] = useState(9);
+  const [spinsLeft, setSpinsLeft] = useState(2);
   const [dados, setDados] = useState(initializeDados());
 
   const refresh = (isLastRefresh) => {
@@ -30,33 +31,25 @@ export function Generala() {
   };
 
   const handleRefresh = () => {
-    if (turnsLeft === 2) {
+    console.log(turnsLeft);
+    if (spinsLeft >= 2) {
       refresh(false);
-      setTurnsLeft(turnsLeft - 1);
-    } else if (turnsLeft === 1) {
+      setSpinsLeft(spinsLeft - 1);
+    } else {
       refresh(true);
-      setTurnsLeft(turnsLeft - 1);
-      //endTurn()
+      setSpinsLeft(spinsLeft - 1);
+      //evaluatePlay()
     }
   };
 
-  const handleStay = () => {
-    setTurnsLeft(0);
-
-    setDados(
-      dados.map((dado) => ({
-        number: dado.number,
-        isFixed: true,
-        img: dado.img,
-      }))
-    );
-
-    //endTurn()
+  const handleEvaluatePlay = () => {
+    //evaluatePlay
   };
 
-  const handleRebuild = () => {
+  const handleNextTurn = () => {
+    setTurnsLeft(turnsLeft - 1);
     setDados(initializeDados());
-    setTurnsLeft(2);
+    setSpinsLeft(2);
   };
 
   const endTurn = () => {};
@@ -83,23 +76,21 @@ export function Generala() {
     <div className="container">
       <div className="row justify-content-md-center">
         <div className="col col-lg-2">
-          {turnsLeft > 0 ? (
-            <TopButton string="Plantarse" fn={handleStay} />
+          {spinsLeft > 0 ? (
+            <TopButton string="Anotar Jugada" fn={handleEvaluatePlay} />
           ) : null}
-          {turnsLeft === 0 ? (
-            <TopButton string="Volver a jugar" fn={handleRebuild} />
+          {spinsLeft === 0 && turnsLeft > 0 ? (
+            <TopButton string="Siguiente Turno" fn={handleNextTurn} />
           ) : null}
+          <span className="badge badge-light">Turno {10 - turnsLeft}/10</span>
         </div>
         <div className="col-md-auto">
-          {turnsLeft > 0 ? (
+          {spinsLeft > 0 ? (
             <TopButton string="Volver a Tirar" fn={handleRefresh} />
           ) : null}
+          {turnsLeft > 0 ? <SpinsLeft spins={spinsLeft} /> : null}
         </div>
-        <div className="col col-lg-2">
-          <span className="badge badge-light">
-            Tiradas Restantes: {turnsLeft}
-          </span>
-        </div>
+        <div className="col col-lg-2"></div>
       </div>
       <div className="row top-buffer">
         {dados.map((dado, i) => (

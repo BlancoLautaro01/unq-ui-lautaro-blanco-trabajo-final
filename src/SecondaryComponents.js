@@ -8,3 +8,9 @@ export function TopButton(props) {
     </button>
   );
 }
+
+export function SpinsLeft(props) {
+  return (
+    <span className="badge badge-light">Tiradas Restantes: {props.spins}</span>
+  );
+}
