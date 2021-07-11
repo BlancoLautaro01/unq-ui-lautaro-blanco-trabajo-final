@@ -47,7 +47,7 @@ export function Generala() {
     }
   };
 
-  const stay = () => {
+  const handleStay = () => {
     setTurnsLeft(0);
 
     setDados(
@@ -59,6 +59,13 @@ export function Generala() {
     );
 
     //endTurn()
+  };
+
+  const endTurn = () => {};
+
+  const handleRebuild = () => {
+    setDados(initializeDados());
+    setTurnsLeft(2);
   };
 
   const setFix = (i) => {
@@ -79,19 +86,16 @@ export function Generala() {
     );
   };
 
-  const endTurn = () => {};
-
-  const rebuild = () => {
-    setDados(initializeDados());
-    setTurnsLeft(2);
-  }
-
   return (
     <div className="container">
       <div className="row justify-content-md-center">
         <div className="col col-lg-2">
-          {turnsLeft > 0 ? <TopButtom string="Plantarse" fn={stay} /> : null}
-          {turnsLeft == 0 ? <TopButtom string="Volver a jugar" fn={rebuild} /> : null}
+          {turnsLeft > 0 ? (
+            <TopButtom string="Plantarse" fn={handleStay} />
+          ) : null}
+          {turnsLeft == 0 ? (
+            <TopButtom string="Volver a jugar" fn={handleRebuild} />
+          ) : null}
         </div>
         <div className="col-md-auto">
           {turnsLeft > 0 ? (
