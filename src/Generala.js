@@ -57,8 +57,6 @@ export function Generala() {
     setSpinsLeft(2);
   };
 
-  const endTurn = () => {};
-
   const setFix = (i) => {
     setDados(
       dados.map((dado, x) =>
