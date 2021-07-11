@@ -8,6 +8,7 @@ import "./App.css";
 export function Generala() {
   const [turnsLeft, setTurnsLeft] = useState(9);
   const [spinsLeft, setSpinsLeft] = useState(2);
+  const [score, setScore] = useState(0);
   const [dados, setDados] = useState(initializeDados());
 
   const refresh = (isLastRefresh) => {
@@ -30,6 +31,10 @@ export function Generala() {
     );
   };
 
+  const evaluatePlay = () => {
+    setScore(score + 5);
+  };
+
   const handleRefresh = () => {
     console.log(turnsLeft);
     if (spinsLeft >= 2) {
@@ -38,12 +43,12 @@ export function Generala() {
     } else {
       refresh(true);
       setSpinsLeft(spinsLeft - 1);
-      //evaluatePlay()
+      evaluatePlay();
     }
   };
 
   const handleEvaluatePlay = () => {
-    //evaluatePlay
+    evaluatePlay();
   };
 
   const handleNextTurn = () => {
@@ -88,7 +93,7 @@ export function Generala() {
           {spinsLeft > 0 ? (
             <TopButton string="Volver a Tirar" fn={handleRefresh} />
           ) : null}
-          {turnsLeft > 0 ? <SpinsLeft spins={spinsLeft} /> : null}
+          {spinsLeft > 0 ? <SpinsLeft spins={spinsLeft} /> : null}
         </div>
         <div className="col col-lg-2"></div>
       </div>
@@ -104,7 +109,21 @@ export function Generala() {
           </div>
         ))}
       </div>
-      <div className="row top-buffer"></div>
+      <div className="row top-buffer">
+        <div className="col col-lg-4">
+          <h1>Puntaje - {score}</h1>
+        </div>
+        <div className="col col-lg-2">
+          <h1>Jugadas - </h1>
+        </div>
+        <div className="col col-lg-3">
+          <ul>
+            <li>Jugada 1</li>
+            <li>Jugada 2</li>
+            <li>Jugada 3</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
