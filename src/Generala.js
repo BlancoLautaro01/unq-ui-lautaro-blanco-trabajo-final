@@ -61,12 +61,12 @@ export function Generala() {
     //endTurn()
   };
 
-  const endTurn = () => {};
-
   const handleRebuild = () => {
     setDados(initializeDados());
     setTurnsLeft(2);
   };
+
+  const endTurn = () => {};
 
   const setFix = (i) => {
     setDados(
