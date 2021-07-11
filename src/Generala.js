@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import { Dado } from "./Dado";
+import { TopButton } from "./TopButton";
 import { images, randomNumbers, initializeDados } from "./Randomize";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
-
-function TopButtom(props) {
-  return (
-    <button type="button" className="clickable" onClick={props.fn}>
-      {props.string}
-    </button>
-  );
-}
 
 export function Generala() {
   const [turnsLeft, setTurnsLeft] = useState(2);
@@ -37,10 +30,10 @@ export function Generala() {
   };
 
   const handleRefresh = () => {
-    if (turnsLeft == 2) {
+    if (turnsLeft === 2) {
       refresh(false);
       setTurnsLeft(turnsLeft - 1);
-    } else if (turnsLeft == 1) {
+    } else if (turnsLeft === 1) {
       refresh(true);
       setTurnsLeft(turnsLeft - 1);
       //endTurn()
@@ -71,7 +64,7 @@ export function Generala() {
   const setFix = (i) => {
     setDados(
       dados.map((dado, x) =>
-        x == i
+        x === i
           ? {
               number: dado.number,
               isFixed: true,
@@ -91,15 +84,15 @@ export function Generala() {
       <div className="row justify-content-md-center">
         <div className="col col-lg-2">
           {turnsLeft > 0 ? (
-            <TopButtom string="Plantarse" fn={handleStay} />
+            <TopButton string="Plantarse" fn={handleStay} />
           ) : null}
-          {turnsLeft == 0 ? (
-            <TopButtom string="Volver a jugar" fn={handleRebuild} />
+          {turnsLeft === 0 ? (
+            <TopButton string="Volver a jugar" fn={handleRebuild} />
           ) : null}
         </div>
         <div className="col-md-auto">
           {turnsLeft > 0 ? (
-            <TopButtom string="Volver a Tirar" fn={handleRefresh} />
+            <TopButton string="Volver a Tirar" fn={handleRefresh} />
           ) : null}
         </div>
         <div className="col col-lg-2">
