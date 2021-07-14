@@ -1,20 +1,20 @@
-import dado1 from "./images/dado1.jpeg";
-import dado2 from "./images/dado2.jpeg";
-import dado3 from "./images/dado3.jpeg";
-import dado4 from "./images/dado4.jpeg";
-import dado5 from "./images/dado5.jpeg";
-import dado6 from "./images/dado6.jpeg";
+import dice1 from "./images/dice1.jpeg";
+import dice2 from "./images/dice2.jpeg";
+import dice3 from "./images/dice3.jpeg";
+import dice4 from "./images/dice4.jpeg";
+import dice5 from "./images/dice5.jpeg";
+import dice6 from "./images/dice6.jpeg";
 
-const images = [dado1, dado2, dado3, dado4, dado5, dado6];
+const images = [dice1, dice2, dice3, dice4, dice5, dice6];
 
 const randomNumbers = () =>
   [...new Array(5)].map(() => Math.floor(Math.random() * 6) + 1);
 
-const initializeDados = () =>
+const initializeDices = () =>
   randomNumbers().map((n) => ({
     number: n,
     isFixed: false,
     img: images[n - 1],
   }));
 
-export { images, randomNumbers, initializeDados };
+export { images, randomNumbers, initializeDices };

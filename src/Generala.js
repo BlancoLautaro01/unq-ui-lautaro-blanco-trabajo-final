@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Dado } from "./Dado";
+import { Dice } from "./Dice";
+import { evaluatePlay } from "./Play";
 import { TopButton, SpinsLeft } from "./SecondaryComponents";
-import { images, randomNumbers, initializeDados } from "./Randomize";
+import { images, randomNumbers, initializeDices } from "./Randomize";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
@@ -9,18 +10,19 @@ export function Generala() {
   const [turnsLeft, setTurnsLeft] = useState(9);
   const [spinsLeft, setSpinsLeft] = useState(2);
   const [score, setScore] = useState(0);
-  const [dados, setDados] = useState(initializeDados());
+  const [dices, setDices] = useState(initializeDices());
+  const [plays, setPlays] = useState([]);
 
   const refresh = (isLastRefresh) => {
     const newNumbers = randomNumbers();
 
-    setDados(
-      dados.map((dado, i) =>
-        dado.isFixed
+    setDices(
+      dices.map((dice, i) =>
+        dice.isFixed
           ? {
-              number: dado.number,
-              isFixed: dado.isFixed,
-              img: dado.img,
+              number: dice.number,
+              isFixed: dice.isFixed,
+              img: dice.img,
             }
           : {
               number: newNumbers[i],
@@ -31,10 +33,6 @@ export function Generala() {
     );
   };
 
-  const evaluatePlay = () => {
-    setScore(score + 5);
-  };
-
   const handleRefresh = () => {
     console.log(turnsLeft);
     if (spinsLeft >= 2) {
@@ -43,33 +41,37 @@ export function Generala() {
     } else {
       refresh(true);
       setSpinsLeft(spinsLeft - 1);
-      evaluatePlay();
+
+      setScore(score + evaluatePlay(dices).points);
+      setPlays(plays.concat(evaluatePlay(dices)));
     }
   };
 
   const handleEvaluatePlay = () => {
-    evaluatePlay();
+    setScore(score + evaluatePlay(dices).points);
+    setPlays(plays.concat(evaluatePlay(dices)));
+    console.log(plays);
   };
 
   const handleNextTurn = () => {
     setTurnsLeft(turnsLeft - 1);
-    setDados(initializeDados());
+    setDices(initializeDices());
     setSpinsLeft(2);
   };
 
   const setFix = (i) => {
-    setDados(
-      dados.map((dado, x) =>
+    setDices(
+      dices.map((dice, x) =>
         x === i
           ? {
-              number: dado.number,
+              number: dice.number,
               isFixed: true,
-              img: dado.img,
+              img: dice.img,
             }
           : {
-              number: dado.number,
-              isFixed: dado.isFixed,
-              img: dado.img,
+              number: dice.number,
+              isFixed: dice.isFixed,
+              img: dice.img,
             }
       )
     );
@@ -96,12 +98,12 @@ export function Generala() {
         <div className="col col-lg-2"></div>
       </div>
       <div className="row top-buffer">
-        {dados.map((dado, i) => (
+        {dices.map((dice, i) => (
           <div className="col-sm">
-            <Dado
-              number={dado.number}
-              isFixed={dado.isFixed}
-              img={dado.img}
+            <Dice
+              number={dice.number}
+              isFixed={dice.isFixed}
+              img={dice.img}
               setFix={() => setFix(i)}
             />
           </div>
@@ -112,13 +114,15 @@ export function Generala() {
           <h1>Puntaje - {score}</h1>
         </div>
         <div className="col col-lg-2">
-          <h1>Jugadas - </h1>
+          <h1>Jugadas: </h1>
         </div>
         <div className="col col-lg-3">
           <ul>
-            <li>Jugada 1</li>
-            <li>Jugada 2</li>
-            <li>Jugada 3</li>
+            {plays.map((elem, i) => (
+              <li>
+                {elem.play} {elem.points}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

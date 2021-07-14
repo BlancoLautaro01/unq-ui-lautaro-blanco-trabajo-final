@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
-export function Dado(props) {
+export function Dice(props) {
   return (
     <div className="box">
       <div className="row">
