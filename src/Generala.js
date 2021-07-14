@@ -48,16 +48,16 @@ export function Generala() {
   };
 
   const handleEvaluatePlay = () => {
-    setIsEvaluated(true);
     setScore(score + evaluatePlay(dices).points);
     setPlays(plays.concat(evaluatePlay(dices)));
+    setIsEvaluated(true);
   };
 
   const handleNextTurn = () => {
     setTurnsLeft(turnsLeft - 1);
-    setIsEvaluated(false);
     setDices(initializeDices());
     setSpinsLeft(2);
+    setIsEvaluated(false);
   };
 
   const setFix = (i) => {
