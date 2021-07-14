@@ -12,6 +12,7 @@ export function Generala() {
   const [score, setScore] = useState(0);
   const [dices, setDices] = useState(initializeDices());
   const [plays, setPlays] = useState([]);
+  const [isEvaluated, setIsEvaluated] = useState(false);
 
   const refresh = (isLastRefresh) => {
     const newNumbers = randomNumbers();
@@ -38,23 +39,23 @@ export function Generala() {
     if (spinsLeft >= 2) {
       refresh(false);
       setSpinsLeft(spinsLeft - 1);
+      setIsEvaluated(false);
     } else {
       refresh(true);
       setSpinsLeft(spinsLeft - 1);
-
-      setScore(score + evaluatePlay(dices).points);
-      setPlays(plays.concat(evaluatePlay(dices)));
+      handleEvaluatePlay();
     }
   };
 
   const handleEvaluatePlay = () => {
+    setIsEvaluated(true);
     setScore(score + evaluatePlay(dices).points);
     setPlays(plays.concat(evaluatePlay(dices)));
-    console.log(plays);
   };
 
   const handleNextTurn = () => {
     setTurnsLeft(turnsLeft - 1);
+    setIsEvaluated(false);
     setDices(initializeDices());
     setSpinsLeft(2);
   };
@@ -81,7 +82,7 @@ export function Generala() {
     <div className="container">
       <div className="row justify-content-md-center">
         <div className="col col-lg-2">
-          {spinsLeft > 0 ? (
+          {!isEvaluated ? (
             <TopButton string="Anotar Jugada" fn={handleEvaluatePlay} />
           ) : null}
           {spinsLeft === 0 && turnsLeft > 0 ? (
