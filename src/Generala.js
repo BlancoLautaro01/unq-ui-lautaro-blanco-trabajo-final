@@ -47,8 +47,9 @@ export function Generala() {
       setSpinsLeft(spinsLeft - 1);
       setIsEvaluated(false);
     } else {
-      setSpinsLeft(spinsLeft - 1);
       refresh(true);
+      setSpinsLeft(spinsLeft - 1);
+      setIsEvaluated(false);
     }
   };
 
@@ -130,7 +131,7 @@ export function Generala() {
           <ul>
             {plays.map((elem, i) => (
               <li>
-                {elem.play} {elem.points}
+                {elem.play}: +{elem.points}
               </li>
             ))}
           </ul>

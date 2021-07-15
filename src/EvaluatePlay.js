@@ -1,6 +1,6 @@
-import { generala, poker, full, escalera } from "./Plays";
+import { generala, poker, full, escalera, sumaDe } from "./Plays";
 import { isGenerala, isPoker, isFull, isEscalera } from "./PlaysLogic";
-import { max } from "./EvaluateSuma";
+import { ocurrences, maxOf } from "./Ocurrences";
 
 export function evaluatePlay(dices) {
   let numbers = dicesToList(dices);
@@ -25,4 +25,10 @@ function dicesToList(dices) {
   });
 
   return numbers;
+}
+
+function max(numbers) {
+  let max = maxOf(ocurrences(numbers));
+
+  return sumaDe(max.number, max.ocurrences);
 }
