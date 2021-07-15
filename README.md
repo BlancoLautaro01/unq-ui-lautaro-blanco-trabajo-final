@@ -1,7 +1,7 @@
 TP Final - Generala
 
 Descarga e Instalacion:
-NOTA: Debemos tener instalado node para correr el proyecto localmente.
+NOTA: Debemos tener instalado node para correr el proyecto localmente.<br>
 Podemos chequearlo corriendo <i>'node --version'</i>
 
 Si el output no es la version ir a: https://nodejs.org/es/download/
