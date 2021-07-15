@@ -1,42 +1,20 @@
-body {
-  background: #000000;
-  padding: 20px;
-}
-
-.card {
-  margin-bottom: 20px;
-  border: none;
-}
-
-.box {
-  width: 500px;
-  padding: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: #000000;
-  text-align: center;
-  transition: 0.25s;
-  margin-top: 100px;
-}
-
-.box input[type="submit"] {
-  width: 80px;
-  height: 19px;
-  border: 0;
+.start {
   background: none;
-  display: block;
-  margin: 20px auto;
+  height: 150px;
+  line-height: 130px;
+  width: 200px;
   text-align: center;
-  border: 2px solid #2ecc71;
-  padding: 14px 40px;
-  outline: none;
+  border: 3px solid #3aff8c;
+  padding: 5px 10px;
   color: white;
-  border-radius: 24px;
-  transition: 0.25s;
+  border-radius: 15px;
   cursor: pointer;
 }
 
-.box input[type="submit"]:hover {
-  background: #2ecc71;
+.start:hover {
+  background: rgb(9, 109, 0);
+}
+
+.top {
+  margin-top: 150px;
 }
