@@ -1,7 +1,7 @@
 TP Final - Generala
 
 Descarga e Instalacion:
-- Clonar repositorio: git clone <repository-url> target-folder
+- Clonar repositorio: git clone {repository-url} target-folder
 - Dentro del repo, correr el comando <i>npm install</i>
 
 Ejecucion:
