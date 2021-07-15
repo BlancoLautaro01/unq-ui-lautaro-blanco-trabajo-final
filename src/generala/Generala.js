@@ -86,6 +86,10 @@ export function Generala() {
     );
   };
 
+  const isEndGame = () => {
+    return turnsLeft === 0 && spinsLeft === 0;
+  };
+
   return (
     <div className="container">
       <div className="row justify-content-md-center">
@@ -122,7 +126,10 @@ export function Generala() {
       </div>
       <div className="row top-buffer">
         <div className="col col-lg-4">
-          <h1>Puntaje - {score}</h1>
+          <h1>
+            {isEndGame() ? "Puntaje Final - " : "Puntaje - "}
+            {score}
+          </h1>
         </div>
         <div className="col col-lg-2">
           <h1>Jugadas: </h1>
