@@ -3,7 +3,7 @@ import { Dice } from "./Dice";
 import { evaluatePlay } from "./EvaluatePlay";
 import { images, randomNumbers, initializeDices } from "./Randomize";
 import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
+import "./Generala.css";
 
 function TopButton(props) {
   return (
