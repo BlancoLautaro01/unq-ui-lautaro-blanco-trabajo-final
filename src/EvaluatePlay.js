@@ -6,13 +6,13 @@ export function evaluatePlay(dices) {
   let numbers = dicesToList(dices);
 
   if (isGenerala(numbers)) {
-    return generala;
+    return generala();
   } else if (isPoker(numbers)) {
-    return poker;
+    return poker();
   } else if (isFull(numbers)) {
-    return full;
+    return full();
   } else if (isEscalera(numbers)) {
-    return escalera;
+    return escalera();
   } else {
     return max(numbers);
   }

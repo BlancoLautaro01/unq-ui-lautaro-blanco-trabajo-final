@@ -9,6 +9,16 @@ function ocurrences(list) {
   return ocurrences;
 }
 
+function ocurrencesList(numbers) {
+  const ocurrencesList = [];
+
+  ocurrences(numbers).forEach((ocurrence) =>
+    ocurrencesList.push(ocurrence.ocurrences)
+  );
+
+  return ocurrencesList;
+}
+
 function countOcurrences(elem, list) {
   let ocurrences = 0;
 
@@ -30,4 +40,4 @@ function maxOf(ocurrences) {
   return max;
 }
 
-export { ocurrences, maxOf };
+export { ocurrences, ocurrencesList, maxOf };
