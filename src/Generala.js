@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Dice } from "./Dice";
-import { evaluatePlay } from "./Play";
-import { TopButton, SpinsLeft } from "./SecondaryComponents";
+import { evaluatePlay } from "./EvaluatePlay";
 import { images, randomNumbers, initializeDices } from "./Randomize";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+
+function TopButton(props) {
+  return (
+    <button type="button" className="clickable" onClick={props.fn}>
+      {props.string}
+    </button>
+  );
+}
 
 export function Generala() {
   const [turnsLeft, setTurnsLeft] = useState(9);
@@ -35,21 +42,21 @@ export function Generala() {
   };
 
   const handleRefresh = () => {
-    console.log(turnsLeft);
     if (spinsLeft >= 2) {
       refresh(false);
       setSpinsLeft(spinsLeft - 1);
       setIsEvaluated(false);
     } else {
-      refresh(true);
       setSpinsLeft(spinsLeft - 1);
-      handleEvaluatePlay();
+      refresh(true);
     }
   };
 
   const handleEvaluatePlay = () => {
-    setScore(score + evaluatePlay(dices).points);
-    setPlays(plays.concat(evaluatePlay(dices)));
+    let play = evaluatePlay(dices);
+
+    setScore(score + play.points);
+    setPlays(plays.concat(play));
     setIsEvaluated(true);
   };
 
@@ -81,12 +88,9 @@ export function Generala() {
   return (
     <div className="container">
       <div className="row justify-content-md-center">
-        <div className="col col-lg-2">
+        <div className="col col-lg-3">
           {!isEvaluated ? (
             <TopButton string="Anotar Jugada" fn={handleEvaluatePlay} />
-          ) : null}
-          {spinsLeft === 0 && turnsLeft > 0 ? (
-            <TopButton string="Siguiente Turno" fn={handleNextTurn} />
           ) : null}
           <span className="badge badge-light">Turno {10 - turnsLeft}/10</span>
         </div>
@@ -94,7 +98,12 @@ export function Generala() {
           {spinsLeft > 0 ? (
             <TopButton string="Volver a Tirar" fn={handleRefresh} />
           ) : null}
-          {spinsLeft > 0 ? <SpinsLeft spins={spinsLeft} /> : null}
+          {spinsLeft === 0 && turnsLeft > 0 ? (
+            <TopButton string="Siguiente Turno" fn={handleNextTurn} />
+          ) : null}
+          <span className="badge badge-light">
+            Tiradas Restantes: {spinsLeft}
+          </span>
         </div>
         <div className="col col-lg-2"></div>
       </div>

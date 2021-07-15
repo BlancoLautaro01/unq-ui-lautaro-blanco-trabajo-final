@@ -1,0 +1,28 @@
+import { generala, poker, full, escalera } from "./Plays";
+import { isGenerala, isPoker, isFull, isEscalera } from "./PlaysLogic";
+import { max } from "./EvaluateSuma";
+
+export function evaluatePlay(dices) {
+  let numbers = dicesToList(dices);
+
+  if (isGenerala(numbers)) {
+    return generala;
+  } else if (isPoker(numbers)) {
+    return poker;
+  } else if (isFull(numbers)) {
+    return full;
+  } else if (isEscalera(numbers)) {
+    return escalera;
+  } else {
+    return max(numbers);
+  }
+}
+
+function dicesToList(dices) {
+  let numbers = [];
+  dices.forEach((dice) => {
+    numbers.push(dice.number);
+  });
+
+  return numbers;
+}
